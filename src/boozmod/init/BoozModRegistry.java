@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 public class BoozModRegistry {
 
     private static int itemIdCounter = 5000;
+    private static int blockIdCounter = 500;
 
     public static Item hopsFruit;
     public static Item hopsSeed;
@@ -25,8 +26,8 @@ public class BoozModRegistry {
     protected static void populateBlocksAndItems() {
         hopsFruit = new GenericItem(itemIdCounter++, 64, "fruitHops", BoozMod.CREATIVE_TAB);
         hopsSeed = new GenericItem(itemIdCounter++, 64, "seedHops", BoozMod.CREATIVE_TAB);
-        hopsCrop = new HopsCrop(503, hopsFruit.itemID);
-        hopsSeedTrellis = new HopsSeedTrellis(5003, hopsCrop.blockID, Block.tilledField.blockID);
+        hopsCrop = new HopsCrop(blockIdCounter++, hopsFruit.itemID);
+        hopsSeedTrellis = new HopsSeedTrellis(itemIdCounter++, hopsCrop.blockID, Block.tilledField.blockID);
         hopsCrop.setSeedItem(hopsSeedTrellis.itemID);
     }
 
