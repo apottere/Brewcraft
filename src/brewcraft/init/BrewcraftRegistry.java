@@ -1,8 +1,8 @@
-package boozmod.init;
+package brewcraft.init;
 
-import boozmod.generic.GenericItem;
-import boozmod.plants.hops.HopsCrop;
-import boozmod.plants.hops.HopsSeedTrellis;
+import brewcraft.generic.GenericItem;
+import brewcraft.plants.hops.HopsCrop;
+import brewcraft.plants.hops.HopsSeedTrellis;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 /**
  * @author Andrew Potter (andrew)
  */
-public class BoozModRegistry {
+public class BrewcraftRegistry {
 
     private static int itemIdCounter = 5000;
     private static int blockIdCounter = 500;
@@ -24,8 +24,8 @@ public class BoozModRegistry {
     public static HopsCrop hopsCrop;
 
     protected static void populateBlocksAndItems() {
-        hopsFruit = new GenericItem(itemIdCounter++, 64, "fruitHops", BoozMod.CREATIVE_TAB);
-        hopsSeed = new GenericItem(itemIdCounter++, 64, "seedHops", BoozMod.CREATIVE_TAB);
+        hopsFruit = new GenericItem(itemIdCounter++, 64, "fruitHops", Brewcraft.CREATIVE_TAB);
+        hopsSeed = new GenericItem(itemIdCounter++, 64, "seedHops", Brewcraft.CREATIVE_TAB);
         hopsCrop = new HopsCrop(blockIdCounter++, hopsFruit.itemID);
         hopsSeedTrellis = new HopsSeedTrellis(itemIdCounter++, hopsCrop.blockID, Block.tilledField.blockID);
         hopsCrop.setSeedItem(hopsSeedTrellis.itemID);
