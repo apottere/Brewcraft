@@ -12,19 +12,10 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Andrew Potter (andrew)
@@ -36,9 +27,7 @@ public class BoozMod {
     @Mod.Instance(value = "BoozModModID")
     public static BoozMod instance;
 
-    public static Config config;
-
-    @Mod.EventHandler // used in 1.6.2
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         System.out.println("Loading BoozMod!");
         Configuration configFile = new Configuration(event.getSuggestedConfigurationFile());
@@ -47,7 +36,7 @@ public class BoozMod {
         configFile.save();
     }
 
-    @Mod.EventHandler // used in 1.6.2
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
 
         Item hopsFruit = new HopsFruit(5001);
@@ -69,17 +58,8 @@ public class BoozMod {
         GameRegistry.addShapelessRecipe(new ItemStack(hopsSeedTrellis, 1), new ItemStack(hopsSeed), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick));
     }
 
-    @Mod.EventHandler // used in 1.6.2
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         System.out.println("Loaded ScrewDryads!");
-    }
-
-    public class Config {
-
-        public final List<String> names;
-
-        public Config(String[] names) {
-            this.names = new ArrayList<String>(Arrays.asList(names));
-        }
     }
 }
