@@ -1,8 +1,7 @@
 package boozmod.init;
 
+import boozmod.generic.GenericItem;
 import boozmod.plants.hops.HopsCrop;
-import boozmod.plants.hops.HopsFruit;
-import boozmod.plants.hops.HopsSeed;
 import boozmod.plants.hops.HopsSeedTrellis;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -16,14 +15,16 @@ import net.minecraft.item.ItemStack;
  */
 public class BoozModRegistry {
 
+    private static int itemIdCounter = 5000;
+
     public static Item hopsFruit;
     public static Item hopsSeed;
     public static ItemSeeds hopsSeedTrellis;
     public static HopsCrop hopsCrop;
 
     protected static void populateBlocksAndItems() {
-        hopsFruit = new HopsFruit(5001);
-        hopsSeed = new HopsSeed(5002);
+        hopsFruit = new GenericItem(itemIdCounter++, 64, "fruitHops", BoozMod.CREATIVE_TAB);
+        hopsSeed = new GenericItem(itemIdCounter++, 64, "seedHops", BoozMod.CREATIVE_TAB);
         hopsCrop = new HopsCrop(503, hopsFruit.itemID);
         hopsSeedTrellis = new HopsSeedTrellis(5003, hopsCrop.blockID, Block.tilledField.blockID);
         hopsCrop.setSeedItem(hopsSeedTrellis.itemID);

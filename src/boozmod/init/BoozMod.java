@@ -5,6 +5,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.Configuration;
 
 /**
@@ -16,6 +17,9 @@ public class BoozMod {
 
     @Mod.Instance(value = "BoozModModID")
     public static BoozMod instance;
+
+    public static final String TEXTURE_PREFIX = "boozmod:";
+    public static final CreativeTabs CREATIVE_TAB = CreativeTabs.tabMisc;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
