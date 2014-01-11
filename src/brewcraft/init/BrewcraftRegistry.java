@@ -32,13 +32,19 @@ public class BrewcraftRegistry {
         // Hops registry
         hopsFruit = new GenericItem(itemIdCounter++, 64, "fruitHops", Brewcraft.CREATIVE_TAB);
         hopsSeed = new GenericItem(itemIdCounter++, 64, "seedHops", Brewcraft.CREATIVE_TAB);
+
         hopsCrop = new HopsCrop(blockIdCounter++, hopsFruit.itemID);
+        hopsCrop.setCreativeTab(Brewcraft.CREATIVE_TAB);
+
         hopsSeedTrellis = new HopsSeedTrellis(itemIdCounter++, hopsCrop.blockID, Block.tilledField.blockID);
+        hopsSeedTrellis.setCreativeTab(Brewcraft.CREATIVE_TAB);
         hopsCrop.setSeedItem(hopsSeedTrellis.itemID);
 
         // Brewery registry
         hobbyistWoodBreweryIdle = new HobbyistWoodBrewery(blockIdCounter++, false);
         hobbyistWoodBreweryActive = new HobbyistWoodBrewery(blockIdCounter++, true);
+        hobbyistWoodBreweryIdle.setCreativeTab(Brewcraft.CREATIVE_TAB);
+        hobbyistWoodBreweryActive.setCreativeTab(Brewcraft.CREATIVE_TAB);
     }
 
     protected static void registerNames() {
@@ -49,7 +55,7 @@ public class BrewcraftRegistry {
         LanguageRegistry.addName(hobbyistWoodBreweryIdle, "Hobbyist's Wooden Brewery");
 
         GameRegistry.registerBlock(hopsCrop, "hopsCrop");
-        GameRegistry.registerBlock(hobbyistWoodBreweryIdle, "breweryHobbyistWoodIdle");
+        GameRegistry.registerBlock(hobbyistWoodBreweryIdle, "breweryHobbyistWood");
         GameRegistry.registerBlock(hobbyistWoodBreweryActive, "breweryHobbyistWoodActive");
     }
 

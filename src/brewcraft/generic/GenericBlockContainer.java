@@ -20,6 +20,7 @@ import java.util.Random;
 public abstract class GenericBlockContainer extends BlockContainer {
 
     private final boolean isActive;
+    private final String textureName;
 
     @SideOnly(Side.CLIENT)
     private Icon iconFront;
@@ -28,22 +29,28 @@ public abstract class GenericBlockContainer extends BlockContainer {
     @SideOnly(Side.CLIENT)
     private Icon iconTop;
 
-    public GenericBlockContainer(int id, Material material, boolean isActive) {
+    public GenericBlockContainer(int id, Material material, String textureName, boolean isActive) {
         super(id, material);
         this.isActive = isActive;
+        this.textureName = textureName;
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        this.iconFront = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + this.getUnlocalizedName() + "_front_" + (this.isActive ? "active" : "idle"));
-        this.iconSide = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + this.getUnlocalizedName() + "_side");
-        this.iconTop = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + this.getUnlocalizedName() + "_top");
+        this.iconFront = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + textureName + "_front_" + (this.isActive ? "active" : "idle"));
+        this.iconSide = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + textureName + "_side");
+        this.iconTop = iconRegister.registerIcon(Brewcraft.TEXTURE_PREFIX + textureName + "_top");
 
         this.blockIcon = this.iconFront;
     }
 
     @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata) {
+
+        if(metadata == 0 && side == 3) {
+            return this.iconFront;
+        }
+
         switch(side) {
             case BlockSide.BOTTOM:
             case BlockSide.TOP:

@@ -5,7 +5,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 /**
@@ -19,7 +22,13 @@ public class Brewcraft {
     public static Brewcraft instance;
 
     public static final String TEXTURE_PREFIX = "brewcraft:";
-    public static final CreativeTabs CREATIVE_TAB = CreativeTabs.tabMisc;
+
+    public static ItemStack creativeTabStack = new ItemStack(Block.dirt);
+    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("tabBrewcraft") {
+        public ItemStack getIconItemStack() {
+            return creativeTabStack;
+        }
+    };
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -35,6 +44,8 @@ public class Brewcraft {
         BrewcraftRegistry.populateBlocksAndItems();
         BrewcraftRegistry.registerNames();
         BrewcraftRegistry.registerCraftingRecipes();
+
+        creativeTabStack = new ItemStack(BrewcraftRegistry.hopsFruit);
     }
 
     @Mod.EventHandler

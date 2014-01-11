@@ -14,7 +14,7 @@ import java.util.Random;
 public class HobbyistWoodBrewery extends GenericBlockContainer {
 
     public HobbyistWoodBrewery(int id, boolean isActive) {
-        super(id, Material.wood, isActive);
+        super(id, Material.wood, "breweryHobbyistWood", isActive);
     }
 
     @Override
