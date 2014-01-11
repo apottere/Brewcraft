@@ -1,13 +1,16 @@
 package brewcraft.generic;
 
 import brewcraft.init.Brewcraft;
+import brewcraft.init.BrewcraftRegistry;
 import brewcraft.util.BrewcraftUtil;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -71,8 +74,10 @@ public abstract class GenericBlockContainer extends BlockContainer {
         }
     }
 
+    @Override
     public abstract int idDropped(int par1, Random random, int par3);
 
+    @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
     }
@@ -81,5 +86,14 @@ public abstract class GenericBlockContainer extends BlockContainer {
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLivingBase, ItemStack itemStack) {
         int facing = BrewcraftUtil.getPlayerDirection(entityLivingBase);
         world.setBlockMetadataWithNotify(x, y, z, BrewcraftUtil.translateBlockFacing(facing), 2);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if(!world.isRemote) {
+            FMLNetworkHandler.openGui(player, Brewcraft.instance, BrewcraftRegistry.hobbyistWoodBreweryTileEntity.id, world, x, y, z);
+        }
+
+        return true;
     }
 }

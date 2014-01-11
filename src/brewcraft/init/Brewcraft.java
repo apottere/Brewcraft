@@ -22,6 +22,7 @@ public class Brewcraft {
     public static Brewcraft instance;
 
     public static final String TEXTURE_PREFIX = "brewcraft:";
+    public static final String MODID = "brewcraft";
 
     public static ItemStack creativeTabStack = new ItemStack(Block.dirt);
     public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("tabBrewcraft") {
