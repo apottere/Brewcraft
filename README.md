@@ -1,4 +1,4 @@
-BoozMod
+Brewcraft
 =======
 
 Booz for Minecraft!
