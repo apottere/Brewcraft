@@ -1,4 +1,4 @@
 Brewcraft
 =======
 
-Booz for Minecraft!
+Booze for Minecraft!
